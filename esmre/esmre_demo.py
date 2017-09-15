@@ -13,10 +13,12 @@ if __name__ == "__main__":
     word_index.fix()
     with open('./data/search_file', 'r') as o_file:
         for line in o_file:
-            if None != line and line.strip() != '':
-                search_rst = word_index.query(line.strip())
-                print search_rst
-                o_rst.write(str(search_rst) + '\n')
+            if None == line or line.strip() == '':
+                continue
+            search_rst_list = word_index.query(line.strip())
+            for sr in search_rst_list:
+                print sr[1]
+                o_rst.write(sr[1] + '\n')
     o_rst.close()
     print 'process finished'
 
